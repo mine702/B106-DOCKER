@@ -34,26 +34,25 @@ services:
     volumes:
       - ./data/mysql:/var/lib/mysql
 
-  fastapi:
-    image: mine0702/potless-fastapi
+  frontend:
+    image: mine0702/potless-frontend
     restart: unless-stopped
-    container_name: app_fastapi
-    stdin_open: true
+    container_name: app_frontend
     expose:
-      - "8000" # 백엔드 서비스가 사용하는 포트, 외부에 노출하지 않음 
-    deploy:
-      resources:
-        limits:
-          cpus: "0" # 제한 없음
-          memory: "0" # 제한 없음
-        reservations:
-          cpus: "0" # 예약 없음
-          memory: "0" # 예약 없음
+      - "3000"
+    stdin_open: true
 
-  math:
-    image: mine0702/potless-math
+  backend:
+    image: mine0702/potless-backend
+    environment:
+      - JAVA_OPTS=-Xms1024m -Xmx12288m
     restart: unless-stopped
-    container_name: app_math
+    container_name: app_backend
     stdin_open: true
     expose:
-      - "5000" # 백엔드 서비스가 사용하는 포트, 외부에 노출하지 않음 
+      - "7080" # 백엔드 서비스가 사용하는 포트, 외부에 노출하지 않음 
+
+
+  
+
+    
