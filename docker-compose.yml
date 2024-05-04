@@ -34,13 +34,13 @@ services:
     volumes:
       - ./data/mysql:/var/lib/mysql
 
-  frontend:
-    image: mine0702/potless-frontend
-    restart: unless-stopped
-    container_name: app_frontend
-    expose:
-      - "3000"
-    stdin_open: true
+  # frontend:
+  #   image: mine0702/potless-frontend
+  #   restart: unless-stopped
+  #   container_name: app_frontend
+  #   expose:
+  #     - "3000"
+  #   stdin_open: true
 
   backend:
     image: mine0702/potless-backend
